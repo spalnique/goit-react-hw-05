@@ -8,16 +8,14 @@ const Navigation = () => {
     clsx(style.navLinkItem, isActive && style.activeLink);
 
   return (
-    <header>
-      <nav className={style.navList}>
-        <NavLink to="/" className={setClassName}>
-          home
-        </NavLink>
-        <NavLink to="/movies" className={setClassName}>
-          movies
-        </NavLink>
-      </nav>
-    </header>
+    <nav className={style.navList}>
+      <NavLink to="/" className={setClassName}>
+        home
+      </NavLink>
+      <NavLink to="/movies" className={setClassName}>
+        movies
+      </NavLink>
+    </nav>
   );
 };
 

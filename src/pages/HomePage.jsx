@@ -1,17 +1,7 @@
-import { Link } from 'react-router-dom';
+import MovieList from '../components/MovieList/MovieList';
 
 const HomePage = ({ movies }) => {
-  return (
-    <ul>
-      {movies.map(({ id, title }) => {
-        return (
-          <li key={id}>
-            <Link>{title}</Link>
-          </li>
-        );
-      })}
-    </ul>
-  );
+  return <MovieList movies={movies} />;
 };
 
 export default HomePage;

@@ -3,8 +3,12 @@ import { fetchTrending } from '../../service/api';
 import { useEffect, useState, lazy, Suspense } from 'react';
 import Loader from '../Loader/Loader';
 
+const Navigation = lazy(() => import('../Navigation/Navigation'));
 const HomePage = lazy(() => import('../../pages/HomePage'));
 const MoviesPage = lazy(() => import('../../pages/MoviesPage'));
+const MovieDetailsPage = lazy(() => import('../../pages/MovieDetailsPage'));
+const MovieCast = lazy(() => import('../MovieCast/MovieCast'));
+const MovieReviews = lazy(() => import('../MovieReviews/MovieReviews'));
 const NotFoundPage = lazy(() => import('../../pages/NotFoundPage'));
 
 const App = () => {
@@ -25,7 +29,11 @@ const App = () => {
 
   return (
     <>
-      <Navigation />
+      <header>
+        <Suspense fallback={<Loader />}>
+          <Navigation />
+        </Suspense>
+      </header>
       <main>
         <Suspense fallback={<Loader />}>
           <Routes>
@@ -37,6 +45,10 @@ const App = () => {
               }
             />
             <Route path="/movies" element={<MoviesPage />} />
+            <Route path="/movies/:id/*" element={<MovieDetailsPage />}>
+              <Route path="cast" element={<MovieCast />} />
+              <Route path="reviews" element={<MovieReviews />} />
+            </Route>
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>

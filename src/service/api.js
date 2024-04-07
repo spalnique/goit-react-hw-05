@@ -44,10 +44,17 @@ export const fetchMovieById = async (id) => {
   return movie;
 };
 
-export const fetchMovieCredits = async (id) => {
+export const fetchMovieCast = async (id) => {
   const {
-    data: { cast },
+    data: { cast: castList },
   } = await instance.get(`movie/${id}/credits`);
+  const cast = castList.map(({ name, character, profile_path }) => {
+    return {
+      name,
+      character,
+      image: `https://image.tmdb.org/t/p/w200${profile_path}`,
+    };
+  });
   return cast;
 };
 
@@ -57,9 +64,3 @@ export const fetchMovieReviews = async (id) => {
   } = await instance.get(`movie/${id}/reviews`);
   return reviews;
 };
-
-fetchTrending();
-fetchMovieById(693134);
-fetchMovieByKeyword('Dune');
-fetchMovieCredits(693134);
-fetchMovieReviews(693134);
