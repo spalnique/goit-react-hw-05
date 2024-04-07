@@ -1,0 +1,17 @@
+.navList {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
+  width: 100vw;
+}
+
+.navLinkItem {
+  color: darkred;
+  text-transform: lowercase;
+}
+
+.activeLink {
+  color: red;
+  text-transform: uppercase;
+}
