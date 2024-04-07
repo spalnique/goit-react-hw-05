@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 import { NavLink } from 'react-router-dom';
 
-import style from './Header.module.css';
+import style from './Navigation.module.css';
 
-const Header = () => {
+const Navigation = () => {
   const setClassName = ({ isActive }) =>
     clsx(style.navLinkItem, isActive && style.activeLink);
 
@@ -13,15 +13,12 @@ const Header = () => {
         <NavLink to="/" className={setClassName}>
           home
         </NavLink>
-        <NavLink to="/hello" className={setClassName}>
-          hello
-        </NavLink>
-        <NavLink to="/world" className={setClassName}>
-          world
+        <NavLink to="/movies" className={setClassName}>
+          movies
         </NavLink>
       </nav>
     </header>
   );
 };
 
-export default Header;
+export default Navigation;

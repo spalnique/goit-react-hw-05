@@ -1,5 +1,11 @@
+import { Suspense } from 'react';
+
 const MoviesPage = () => {
-  return <div>MoviesPage</div>;
+  return (
+    <Suspense>
+      <div>MoviesPage</div>
+    </Suspense>
+  );
 };
 
 export default MoviesPage;
