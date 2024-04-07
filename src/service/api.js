@@ -61,8 +61,8 @@ export const fetchMovieReviews = async (id) => {
   return reviews;
 };
 
-await fetchTrending();
-await fetchMovieById(693134);
-await fetchMovieByKeyword('Dune');
-await fetchMovieCredits(693134);
-await fetchMovieReviews(693134);
+fetchTrending();
+fetchMovieById(693134);
+fetchMovieByKeyword('Dune');
+fetchMovieCredits(693134);
+fetchMovieReviews(693134);
