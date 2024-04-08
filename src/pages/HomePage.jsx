@@ -14,8 +14,8 @@ const HomePage = () => {
   useEffect(() => {
     try {
       const getMovies = async () => {
-        const movieList = await fetchTrending();
-        setMovies(movieList);
+        const movies = await fetchTrending();
+        setMovies(movies);
       };
       getMovies();
     } catch (error) {
@@ -26,7 +26,7 @@ const HomePage = () => {
   return (
     <Suspense fallback={<Loader />}>
       {error && <ErrorMessage error={error} />}
-      <MovieList movies={movies} />
+      {Array.isArray(movies) && movies.length && <MovieList movies={movies} />}
     </Suspense>
   );
 };
