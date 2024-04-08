@@ -1,29 +1,40 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 import { fetchMovieByKeyword } from '../service/api';
-import MovieList from '../components/MovieList/MovieList';
+import { useSearchParams } from 'react-router-dom';
+import Loader from '../components/Loader/Loader';
+
+const ErrorMessage = lazy(() =>
+  import('../components/ErrorMessage/ErrorMessage')
+);
+const SearchForm = lazy(() => import('../components/SearchForm/SearchForm'));
+const MovieList = lazy(() => import('../components/MovieList/MovieList'));
 
 const MoviesPage = () => {
-  const [keyword, setKeyword] = useState(null);
-  const [result, setResult] = useState(null);
-
-  const handleSubmit = (e) => {};
+  const [movies, setMovies] = useState(null);
+  const [error, setError] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const keyword = searchParams.get('keyword');
 
   useEffect(() => {
     if (!keyword) return;
     try {
-      const search = async () => {
-        const result = await fetchMovieByKeyword(keyword);
-        setResult(result);
+      const getMovies = async () => {
+        const movies = await fetchMovieByKeyword(keyword);
+        setMovies(movies);
       };
-      search();
+      setError(null);
+      getMovies();
     } catch (error) {
-      console.log('error', error.message);
+      setError(error.message);
     }
   }, [keyword]);
   return (
     <>
-      <form></form>
-      <MovieList movies={result} />
+      <Suspense fallback={<Loader />}>
+        <SearchForm onSubmit={(value) => setSearchParams({ keyword: value })} />
+        {error && <ErrorMessage error={error} />}
+        {movies && <MovieList movies={movies} />}
+      </Suspense>
     </>
   );
 };
