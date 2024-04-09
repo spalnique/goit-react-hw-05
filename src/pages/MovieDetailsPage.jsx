@@ -36,7 +36,7 @@ const MovieDetailsPage = () => {
     } catch (error) {
       setError(error.message);
     } finally {
-      setLoading(true);
+      setLoading(false);
     }
   }, [id]);
 
@@ -45,9 +45,11 @@ const MovieDetailsPage = () => {
       <Link to={location.state?.from ?? '/'} className={css.goBackLink}>
         Go back
       </Link>
+
       {loading && <Loader />}
       {error && <ErrorMessage error={error} />}
       {movie && <MovieInfo movie={movie} />}
+
       <div className={css.buttonsWrapper}>
         <NavLink
           to="cast"
@@ -62,6 +64,7 @@ const MovieDetailsPage = () => {
           Reviews
         </NavLink>
       </div>
+
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
