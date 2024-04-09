@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+const defaultImg =
+  'https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg';
+
 const baseURL = 'https://api.themoviedb.org/3/';
 const apiAccessToken =
   'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiNjk0NWFiM2EwNTFkZDU3NGFkZDk5NGYzODM2MzQ2ZCIsInN1YiI6IjY2MTJhZTQwMTk2OTBjMDE3Y2E1NGQxYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.t-zolryQZCoz8mehPlzav8WOYqJkjLZ2uOsl_2uwRbQ';
@@ -16,7 +19,9 @@ export const fetchTrending = async () => {
   const trendingList = results.map((movie) => {
     return {
       ...movie,
-      poster_path: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+      poster_path: movie.poster_path
+        ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+        : `${defaultImg}`,
     };
   });
   return trendingList;
@@ -29,7 +34,9 @@ export const fetchMovieByKeyword = async (keyword) => {
   const movieList = results.map((movie) => {
     return {
       ...movie,
-      poster_path: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+      poster_path: movie.poster_path
+        ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+        : `${defaultImg}`,
     };
   });
   return movieList;
@@ -39,7 +46,9 @@ export const fetchMovieById = async (id) => {
   const { data } = await instance.get(`movie/${id}`);
   const movie = {
     ...data,
-    poster_path: `https://image.tmdb.org/t/p/w500${data.poster_path}`,
+    poster_path: data.poster_path
+      ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
+      : `${defaultImg}`,
   };
   return movie;
 };
@@ -52,7 +61,9 @@ export const fetchMovieCast = async (id) => {
     return {
       name,
       character,
-      image: `https://image.tmdb.org/t/p/w200${profile_path}`,
+      image: profile_path
+        ? `https://image.tmdb.org/t/p/w200${profile_path}`
+        : `${defaultImg}`,
     };
   });
   return cast;

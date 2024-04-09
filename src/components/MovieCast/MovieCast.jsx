@@ -6,8 +6,6 @@ import Loader from '../Loader/Loader';
 import css from './MovieCast.module.css';
 
 const MovieCast = () => {
-  const defaultImg =
-    'https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg';
   const [loading, setLoading] = useState(false);
   const [cast, setCast] = useState(null);
   const [error, setError] = useState(null);
@@ -50,7 +48,7 @@ const MovieCast = () => {
                   <li className={css.infoImageWrapper}>
                     <img
                       className={css.infoImage}
-                      src={image ? image : defaultImg}
+                      src={image}
                       alt={name}
                       width="200px"
                       height="300px"

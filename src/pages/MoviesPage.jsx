@@ -20,8 +20,8 @@ const MoviesPage = () => {
         const movies = await fetchMovieByKeyword(keyword);
         setMovies(movies);
       };
-      setLoading(true);
       setError(null);
+      setLoading(true);
       getMovies();
     } catch (error) {
       setError(error.message);
