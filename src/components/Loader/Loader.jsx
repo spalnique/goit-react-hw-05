@@ -10,7 +10,7 @@ const Loader = () => {
         width="120"
         ariaLabel="dna-loading"
         wrapperStyle={{}}
-        wrapperClass="dna-wrapper"
+        wrapperClass=""
       />
     </div>
   );
