@@ -10,6 +10,7 @@ const ErrorMessage = lazy(() =>
 const HomePage = () => {
   const [movies, setMovies] = useState(null);
   const [error, setError] = useState(null);
+  console.log('movies', movies);
 
   useEffect(() => {
     try {

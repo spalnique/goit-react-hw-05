@@ -3,15 +3,25 @@
   gap: 20px;
   padding: 20px;
   justify-content: center;
+  padding: 20px 0;
   width: 100vw;
+  border-bottom: 0.5px solid darkslateblue;
 }
 
 .navLinkItem {
-  color: darkred;
-  text-transform: lowercase;
+  padding: 10px 25px;
+  width: 120px;
+  background-color: white;
+  border: 0.5px solid darkslateblue;
+  border-radius: 4px;
+  color: darkslateblue;
+  text-align: center;
+  text-transform: capitalize;
+  transition: all 250ms ease-in-out;
 }
 
 .activeLink {
-  color: red;
-  text-transform: uppercase;
+  color: white;
+  background-color: darkslateblue;
+  text-transform: capitalize;
 }

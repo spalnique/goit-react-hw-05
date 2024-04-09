@@ -22,6 +22,7 @@ const MovieDetailsPage = () => {
   const [error, setError] = useState(null);
   const { id } = useParams();
   const location = useLocation();
+  console.log(movie?.genres.map((x) => x.name));
 
   const setClassName = ({ isActive }) =>
     clsx(style.navLinkItem, isActive && style.activeLink);
