@@ -1,0 +1,38 @@
+.reviewListWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.reviewItem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  border: 0.5px solid transparent;
+  border-radius: 4px;
+}
+
+.reviewItem:hover {
+  border: 0.5px solid darkslateblue;
+}
+
+.reviewAuthor {
+  display: inline-block;
+  width: 250px;
+  padding: 4px 8px;
+  background-color: darkslateblue;
+  color: white;
+  border-radius: 4px;
+  transition: all 500ms ease-in-out;
+}
+
+.reviewItem:hover .reviewAuthor {
+  width: 100%;
+}
+
+.reviewText {
+  color: rgb(75, 75, 75);
+}

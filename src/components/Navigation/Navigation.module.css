@@ -1,3 +1,22 @@
+.headerWrapper {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  height: 20px;
+  transition: all 250ms ease-in-out;
+}
+
+.headerWrapper:hover {
+  height: 80px;
+}
+
+.headerWrapper:hover .navList {
+  transform: translateY(0);
+  background-color: white;
+}
+
 .navList {
   display: flex;
   gap: 20px;
@@ -6,6 +25,9 @@
   padding: 20px 0;
   width: 100vw;
   border-bottom: 0.5px solid darkslateblue;
+  transform: translateY(-90%);
+  background-color: darkslateblue;
+  transition: all 250ms ease-in-out;
 }
 
 .navLinkItem {
@@ -18,6 +40,12 @@
   text-align: center;
   text-transform: capitalize;
   transition: all 250ms ease-in-out;
+}
+
+.navLinkItem:hover,
+.navLinkItem:focus {
+  background-color: slateblue;
+  color: white;
 }
 
 .activeLink {

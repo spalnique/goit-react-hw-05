@@ -1,0 +1,59 @@
+.mainWrapper {
+  display: flex;
+  width: 70%;
+  flex-direction: column;
+  gap: 45px;
+  padding: 100px 0;
+  margin: 0 auto;
+}
+
+.navLinkItem {
+  padding: 10px 25px;
+  width: 120px;
+  background-color: white;
+  border: 0.5px solid darkslateblue;
+  border-radius: 4px;
+  color: darkslateblue;
+  text-align: center;
+  text-transform: capitalize;
+  transition: all 250ms ease-in-out;
+}
+
+.navLinkItem:hover {
+  color: white;
+  background-color: rgba(105, 90, 205, 0.75);
+  border: 0.5px solid rgba(105, 90, 205, 0.75);
+}
+
+.activeLink {
+  color: white;
+  background-color: darkslateblue;
+}
+
+.goBackLink {
+  position: fixed;
+  top: 30px;
+  left: 45px;
+  padding: 10px 25px;
+  width: 120px;
+  background-color: white;
+  border: 0.5px solid darkslateblue;
+  border-radius: 4px;
+  color: darkslateblue;
+  text-align: center;
+  text-transform: capitalize;
+  transition: all 250ms ease-in-out;
+}
+
+.goBackLink:hover,
+.goBackLink:focus {
+  color: white;
+  background-color: rgba(105, 90, 205, 0.75);
+  border: 0.5px solid rgba(105, 90, 205, 0.75);
+}
+
+.buttonsWrapper {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}

@@ -1,0 +1,31 @@
+.mainWrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 72px;
+  font-weight: 800;
+}
+
+.homeButton {
+  padding: 10px 25px;
+  background-color: white;
+  border: 0.5px solid darkslateblue;
+  border-radius: 4px;
+  color: darkslateblue;
+  text-align: center;
+  text-transform: capitalize;
+  transition: all 250ms ease-in-out;
+}
+.homeButton:hover,
+.homeButton:focus {
+  color: white;
+  background-color: rgba(105, 90, 205, 0.75);
+  border: 0.5px solid rgba(105, 90, 205, 0.75);
+}

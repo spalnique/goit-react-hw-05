@@ -1,13 +1,16 @@
-import { useEffect, useState, lazy, Suspense } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieReviews } from '../../service/api';
-
-const ErrorMessage = lazy(() => import('../ErrorMessage/ErrorMessage'));
+import css from './MovieReviews.module.css';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import Loader from '../Loader/Loader';
 
 const MovieReviews = () => {
+  const [loading, setLoading] = useState(false);
   const [reviews, setReviews] = useState(null);
   const [error, setError] = useState(null);
   const { id } = useParams();
+  const reviewsRef = useRef();
 
   useEffect(() => {
     try {
@@ -16,27 +19,38 @@ const MovieReviews = () => {
         setReviews(reviews);
       };
       setError(null);
+      setLoading(true);
       getReviews();
     } catch (error) {
       setError(error.message);
+    } finally {
+      setLoading(false);
     }
+
+    const tID = setTimeout(() => {
+      window.scrollTo({
+        top: reviewsRef.current.offsetTop - 130,
+        behavior: 'smooth',
+      });
+      clearTimeout(tID);
+    }, 500);
   }, [id]);
 
   return (
     <>
-      <Suspense>{error && <ErrorMessage error={error} />}</Suspense>
+      {loading && <Loader />}
+      {error && <ErrorMessage error={error} />}
       {reviews && (
-        <ul style={{ display: 'flex', flexDirection: 'column', gap: 30 }}>
+        <ul className={css.reviewListWrapper} ref={reviewsRef}>
           {reviews.map(({ author, content }) => (
-            <li
-              key={author}
-              style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              <span>Author: {author}</span>
-              <span>{content}</span>
+            <li className={css.reviewItem} key={author}>
+              <p className={css.reviewAuthor}>Author: {author}</p>
+              <p className={css.reviewText}>{content}</p>
             </li>
           ))}
         </ul>
       )}
+      {reviews && !reviews.length && <p>No reviews has been posted so far</p>}
     </>
   );
 };

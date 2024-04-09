@@ -1,0 +1,48 @@
+.movieWrapper {
+  display: flex;
+  gap: 200px;
+}
+
+.detailsList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.movieImage {
+  width: 350px;
+  border-radius: 4px;
+}
+
+.movieTitle {
+  text-transform: uppercase;
+  color: darkslateblue;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.detailsItem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 0;
+  border: 0.5px solid transparent;
+}
+
+.detailTitle {
+  display: inline-block;
+  width: 100px;
+  padding: 4px 8px;
+  background-color: darkslateblue;
+  color: white;
+  border-radius: 4px;
+  transition: all 500ms ease-in-out;
+}
+
+.detailText {
+  color: rgb(75, 75, 75);
+}
+
+.detailsItem:hover > .detailTitle {
+  width: 100%;
+}

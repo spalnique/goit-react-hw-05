@@ -1,16 +1,14 @@
-import { useState, useEffect, lazy, Suspense } from 'react';
-import Loader from '../components/Loader/Loader';
+import { useState, useEffect } from 'react';
 import { fetchTrending } from '../service/api';
-
-const MovieList = lazy(() => import('../components/MovieList/MovieList'));
-const ErrorMessage = lazy(() =>
-  import('../components/ErrorMessage/ErrorMessage')
-);
+import MovieList from '../components/MovieList/MovieList';
+import ErrorMessage from '../components/ErrorMessage/ErrorMessage';
+import Loader from '../components/Loader/Loader';
 
 const HomePage = () => {
+  const [loading, setLoading] = useState(false);
+
   const [movies, setMovies] = useState(null);
   const [error, setError] = useState(null);
-  console.log('movies', movies);
 
   useEffect(() => {
     try {
@@ -18,17 +16,21 @@ const HomePage = () => {
         const movies = await fetchTrending();
         setMovies(movies);
       };
+      setLoading(true);
       getMovies();
     } catch (error) {
       setError(error.message);
+    } finally {
+      setLoading(false);
     }
   }, []);
 
   return (
-    <Suspense fallback={<Loader />}>
+    <>
+      {loading && <Loader />}
       {error && <ErrorMessage error={error} />}
-      {Array.isArray(movies) && movies.length && <MovieList movies={movies} />}
-    </Suspense>
+      {movies && movies.length && <MovieList movies={movies} />}
+    </>
   );
 };
 

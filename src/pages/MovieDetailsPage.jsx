@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import {
   Link,
   NavLink,
@@ -7,25 +7,22 @@ import {
   useParams,
 } from 'react-router-dom';
 import clsx from 'clsx';
-
-import Loader from '../components/Loader/Loader';
 import { fetchMovieById } from '../service/api';
+import ErrorMessage from '../components/ErrorMessage/ErrorMessage';
+import MovieInfo from '../components/MovieInfo/MovieInfo';
+import Loader from '../components/Loader/Loader';
 
-import style from './MovieDetailsPage.module.css';
-
-const ErrorMessage = lazy(() =>
-  import('../components/ErrorMessage/ErrorMessage')
-);
+import css from './MovieDetailsPage.module.css';
 
 const MovieDetailsPage = () => {
+  const [loading, setLoading] = useState(false);
   const [movie, setMovie] = useState(null);
   const [error, setError] = useState(null);
   const { id } = useParams();
   const location = useLocation();
-  console.log(movie?.genres.map((x) => x.name));
 
   const setClassName = ({ isActive }) =>
-    clsx(style.navLinkItem, isActive && style.activeLink);
+    clsx(css.navLinkItem, isActive && css.activeLink);
 
   useEffect(() => {
     try {
@@ -34,20 +31,24 @@ const MovieDetailsPage = () => {
         setMovie(movie);
       };
       setError(null);
+      setLoading(true);
       getDetails();
     } catch (error) {
       setError(error.message);
+    } finally {
+      setLoading(true);
     }
   }, [id]);
 
   return (
-    <>
-      <Link to={location.state?.from ?? '/'}>Back to results</Link>
-      <Suspense fallback={<Loader />}>
-        {error && <ErrorMessage error={error} />}
-        {movie && (
-          <img src={movie.poster_path} alt={movie.title} width="200px" />
-        )}
+    <div className={css.mainWrapper}>
+      <Link to={location.state?.from ?? '/'} className={css.goBackLink}>
+        Go back
+      </Link>
+      {loading && <Loader />}
+      {error && <ErrorMessage error={error} />}
+      {movie && <MovieInfo movie={movie} />}
+      <div className={css.buttonsWrapper}>
         <NavLink
           to="cast"
           state={{ from: location.state?.from ?? '/' }}
@@ -60,9 +61,11 @@ const MovieDetailsPage = () => {
           className={setClassName}>
           Reviews
         </NavLink>
+      </div>
+      <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
-    </>
+    </div>
   );
 };
 
