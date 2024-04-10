@@ -13,19 +13,19 @@ const MovieCast = () => {
   const castRef = useRef();
 
   useEffect(() => {
-    try {
-      const getCast = async () => {
+    const getCast = async () => {
+      try {
+        setError(false);
+        setLoading(true);
         const cast = await fetchMovieCast(id);
         setCast(cast);
-      };
-      setError(false);
-      setLoading(true);
-      getCast();
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setLoading(false);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
     }
+    getCast();
     const tID = setTimeout(() => {
       window.scrollTo({
         top: castRef.current.offsetTop - 130,
