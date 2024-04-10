@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useState, useRef } from 'react';
 import {
   Link,
   NavLink,
@@ -20,6 +20,8 @@ const MovieDetailsPage = () => {
   const [error, setError] = useState(null);
   const { id } = useParams();
   const location = useLocation();
+  const backLinkRef = useRef(location.state?.from ?? '/');
+  
 
   const setClassName = ({ isActive }) =>
     clsx(css.navLinkItem, isActive && css.activeLink);
@@ -42,7 +44,7 @@ const MovieDetailsPage = () => {
 
   return (
     <div className={css.mainWrapper}>
-      <Link to={location.state?.from ?? '/'} className={css.goBackLink}>
+      <Link to={backLinkRef.current} className={css.goBackLink}>
         Go back
       </Link>
 
@@ -53,13 +55,13 @@ const MovieDetailsPage = () => {
       <div className={css.buttonsWrapper}>
         <NavLink
           to="cast"
-          state={{ from: location.state?.from ?? '/' }}
+          // state={{ from: location.state?.from ?? '/' }}
           className={setClassName}>
           Cast
         </NavLink>
         <NavLink
           to="reviews"
-          state={{ from: location.state?.from ?? '/' }}
+          // state={{ from: location.state?.from ?? '/' }}
           className={setClassName}>
           Reviews
         </NavLink>
