@@ -34,7 +34,7 @@ const MovieDetailsPage = () => {
       } catch (error) {
         setError(error.message);
       } finally {
-       setLoading(false);
+        setLoading(false);
       }
     };
     getDetails();
