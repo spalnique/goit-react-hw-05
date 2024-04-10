@@ -15,19 +15,18 @@ const MoviesPage = () => {
 
   useEffect(() => {
     if (!keyword) return;
-    try {
-      const getMovies = async () => {
+    const getMovies = async () => {
+      try {
+        setError(null);
+        setLoading(true);
         const movies = await fetchMovieByKeyword(keyword);
         setMovies(movies);
-      };
-      setError(null);
-      setLoading(true);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
       getMovies();
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setLoading(false);
-    }
   }, [keyword]);
 
   return (
