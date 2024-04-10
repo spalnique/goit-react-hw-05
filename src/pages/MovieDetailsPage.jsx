@@ -25,19 +25,19 @@ const MovieDetailsPage = () => {
     clsx(css.navLinkItem, isActive && css.activeLink);
 
   useEffect(() => {
-    try {
-      const getDetails = async () => {
+    const getDetails = async () => {
+      try {
+        setError(null);
+        setLoading(true);
         const movie = await fetchMovieById(id);
         setMovie(movie);
-      };
-      setError(null);
-      setLoading(true);
-      getDetails();
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setLoading(false);
-    }
+      } catch (error) {
+        setError(error.message);
+      } finally {
+       setLoading(false);
+      }
+    };
+    getDetails();
   }, [id]);
 
   return (
