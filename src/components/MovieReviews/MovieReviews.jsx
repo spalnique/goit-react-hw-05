@@ -13,20 +13,20 @@ const MovieReviews = () => {
   const reviewsRef = useRef();
 
   useEffect(() => {
-    try {
-      const getReviews = async () => {
+    
+    const getReviews = async () => {
+      try {
+        setError(null);
+        setLoading(true);
         const reviews = await fetchMovieReviews(id);
         setReviews(reviews);
-      };
-      setError(null);
-      setLoading(true);
-      getReviews();
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setLoading(false);
-    }
-
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    getReviews();
     const tID = setTimeout(() => {
       window.scrollTo({
         top: reviewsRef.current.offsetTop - 130,
