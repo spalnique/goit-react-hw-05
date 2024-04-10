@@ -11,18 +11,17 @@ const HomePage = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    try {
-      const getMovies = async () => {
+    const getMovies = async () => {
+      try {
+        setLoading(true);
         const movies = await fetchTrending();
         setMovies(movies);
-      };
-      setLoading(true);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
       getMovies();
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setLoading(false);
-    }
   }, []);
 
   return (
