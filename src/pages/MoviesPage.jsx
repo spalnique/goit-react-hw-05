@@ -26,7 +26,8 @@ const MoviesPage = () => {
       } finally {
         setLoading(false);
       }
-      getMovies();
+    }
+    getMovies();
   }, [keyword]);
 
   return (
