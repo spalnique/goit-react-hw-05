@@ -21,7 +21,7 @@ const HomePage = () => {
       } finally {
         setLoading(false);
       }
-    }
+    };
     getMovies();
   }, []);
 
