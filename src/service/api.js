@@ -3,9 +3,9 @@ import axios from 'axios';
 const defaultImg =
   'https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg';
 
-const baseURL = 'https://api.themoviedb.org/3/';
+const baseURL = 'https://api.themoviedb.org/3';
 const apiAccessToken =
-  'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiNjk0NWFiM2EwNTFkZDU3NGFkZDk5NGYzODM2MzQ2ZCIsInN1YiI6IjY2MTJhZTQwMTk2OTBjMDE3Y2E1NGQxYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.t-zolryQZCoz8mehPlzav8WOYqJkjLZ2uOsl_2uwRbQ';
+  'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiNjk0NWFiM2EwNTFkZDU3NGFkZDk5NGYzODM2MzQ2ZCIsIm5iZiI6MTcxMjUwMDI4OC4yNjQsInN1YiI6IjY2MTJhZTQwMTk2OTBjMDE3Y2E1NGQxYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.c_gZxU1fAH8NJkEXvPmRKEu2R0xrgEOIKZ9ofIS5BA4';
 
 const instance = axios.create({
   baseURL: baseURL,
